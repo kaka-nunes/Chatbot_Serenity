@@ -1,4 +1,6 @@
+import 'package:chatbot/views/info_page.dart';
 import 'package:dialog_flowtter/dialog_flowtter.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'app_body.dart';
@@ -28,7 +30,6 @@ class _MyHomePageState extends State<MyHomePage> {
     DialogFlowtter.fromFile(
       path: "assets/credentials.json",
       projectId: "chatbot-serenity",
-
     ).then(
       (instance) => dialogFlowtter = instance,
     );
@@ -37,22 +38,52 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
-      appBar: AppBar(
-        title: Text(widget.title ?? 'DialogFlowtter app'),
-      ),
-      body: Column(
-        children: [
+        appBar: AppBar(
+          title: Text(
+            widget.title ?? 'Serenity',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          backgroundColor: Colors.purple,
+          actions: [
+            /*IconButton(
+              icon: Icon(Icons.contact_page_outlined),
+              onPressed: () {},
+              color: Colors.amber,
+            ),*/
+            IconButton(
+              icon: Icon(Icons.info_outlined),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => InfoPage(
+                          title: 'Ajuda',
+                        )));
+              },
+              color: Colors.white,
+            ),
+          ],
+        ),
+        backgroundColor: Colors.white,
+        body: Column(children: [
           Expanded(child: AppBody(messages: messages)),
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 5,
+            height: 45.0,
+            padding: const EdgeInsets.all(7.0),
+            decoration: BoxDecoration(
+              color: Colors.purple,
+              borderRadius: BorderRadius.circular(25),
+              border: Border.all(color: Colors.purple),
             ),
-            color: Colors.blue,
             child: Row(
               children: [
+                /*IconButton(
+                  color: Colors.white,
+                  icon: Icon(Icons.keyboard_voice_outlined, size: 25.0),
+                  onPressed: () {},
+                ),*/
                 Expanded(
+                  flex: 3,
                   child: TextField(
                     controller: _controller,
                     style: TextStyle(color: Colors.white),
@@ -60,7 +91,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 IconButton(
                   color: Colors.white,
-                  icon: Icon(Icons.send),
+                  icon: Icon(
+                    Icons.send,
+                    size: 25.0,
+                  ),
                   onPressed: () {
                     sendMessage(_controller.text);
                     _controller.clear();
@@ -68,10 +102,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
+          )
+        ] //),
+            ));
   }
 
   void sendMessage(String text) async {

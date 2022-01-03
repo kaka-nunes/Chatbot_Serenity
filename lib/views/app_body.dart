@@ -15,6 +15,7 @@ class AppBody extends StatelessWidget {
       itemBuilder: (context, i) {
         var obj = messages[messages.length - 1 - i];
         Message message = obj['message'];
+
         bool isUserMessage = obj['isUserMessage'] ?? false;
         return Row(
           mainAxisAlignment:
@@ -24,6 +25,7 @@ class AppBody extends StatelessWidget {
             _MessageContainer(
               message: message,
               isUserMessage: isUserMessage,
+              createdAt: DateTime.now(), //OBSERVAÇÃO
             ),
           ],
         );
@@ -32,8 +34,8 @@ class AppBody extends StatelessWidget {
       itemCount: messages.length,
       reverse: true,
       padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 20,
+        horizontal: 10.0,
+        vertical: 20.0,
       ),
     );
   }
@@ -47,6 +49,7 @@ class _MessageContainer extends StatelessWidget {
     Key? key,
     required this.message,
     this.isUserMessage = false,
+    required DateTime createdAt,
   }) : super(key: key);
 
   @override
@@ -62,14 +65,17 @@ class _MessageContainer extends StatelessWidget {
             default:
               return Container(
                 decoration: BoxDecoration(
-                  color: isUserMessage ? Colors.blue : Colors.orange,
-                  borderRadius: BorderRadius.circular(20),
-                ),
+                    color: isUserMessage ? Colors.white : Colors.purple[200],
+                    borderRadius: BorderRadius.circular(25),
+                    border: Border.all(
+                        color: isUserMessage
+                            ? Colors.purple
+                            : Colors.purple.shade200)),
                 padding: const EdgeInsets.all(10),
                 child: Text(
                   message.text?.text?[0] ?? '',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
               );
@@ -92,7 +98,7 @@ class _CardContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Card(
-        color: Colors.orange,
+        color: Colors.white,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,16 +118,16 @@ class _CardContainer extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    card.title ?? '',
+                    card.title ?? 'Serenity',
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 25,
                       color: Colors.white,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w300,
                     ),
                   ),
                   if (card.subtitle != null)
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         card.subtitle!,
                         style: TextStyle(color: Colors.white),
@@ -141,7 +147,7 @@ class _CardContainer extends StatelessWidget {
                           return TextButton(
                             style: TextButton.styleFrom(
                               primary: Colors.white,
-                              backgroundColor: Colors.blue,
+                              backgroundColor: Colors.purple,
                             ),
                             child: Text(button.text ?? ''),
                             onPressed: () {
@@ -152,7 +158,7 @@ class _CardContainer extends StatelessWidget {
                             },
                           );
                         },
-                        separatorBuilder: (_, i) => Container(width: 10),
+                        separatorBuilder: (_, i) => Container(width: 9.0),
                         itemCount: card.buttons!.length,
                       ),
                     ),

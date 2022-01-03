@@ -1,22 +1,40 @@
-import 'package:chat_boot/home.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+// ignore_for_file: unused_import
 
-main(List<String> args) {
+import 'package:chatbot/views/home.dart';
+import 'package:chatbot/views/page_inicial.dart';
+import 'package:flutter/material.dart';
+import 'package:splash_screen_view/SplashScreenView.dart';
+import 'package:chatbot/second_Screen.dart';
+
+void main(/*List<String> args*/) {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
- 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dialog Flowtter Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    Widget example1 = SplashScreenView(
+      navigateRoute: MyHomePage(),
+      duration: 5000,
+      imageSize: 130,
+      imageSrc: "Serenity.png",
+      text: "SERENITY",
+      textType: TextType.ColorizeAnimationText,
+      textStyle: TextStyle(
+        fontSize: 35.0,
       ),
-      home: MyHomePage(title: 'Dialog Flowtter'),
+      colors: [
+        Colors.purple,
+        Colors.blue,
+        Colors.yellow,
+        Colors.pink,
+      ],
+      backgroundColor: Colors.white,
+    );
+
+    return MaterialApp(
+      title: 'Splash screen Demo',
+      home: example1,
     );
   }
 }
