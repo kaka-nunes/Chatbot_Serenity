@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade100,
         body: Column(children: [
           Expanded(child: AppBody(messages: messages)),
           Container(

@@ -1,5 +1,6 @@
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AppBody extends StatelessWidget {
   final List<Map<String, dynamic>> messages;
@@ -25,7 +26,6 @@ class AppBody extends StatelessWidget {
             _MessageContainer(
               message: message,
               isUserMessage: isUserMessage,
-              createdAt: DateTime.now(), //OBSERVAÇÃO
             ),
           ],
         );
@@ -45,12 +45,15 @@ class _MessageContainer extends StatelessWidget {
   final Message message;
   final bool isUserMessage;
 
-  const _MessageContainer({
+  _MessageContainer({
     Key? key,
     required this.message,
     this.isUserMessage = false,
-    required DateTime createdAt,
   }) : super(key: key);
+
+  final DateFormat formatter = DateFormat('hh:mm');
+
+  get child => null;
 
   @override
   Widget build(BuildContext context) {
@@ -63,22 +66,35 @@ class _MessageContainer extends StatelessWidget {
               return _CardContainer(card: message.card!);
             case MessageType.text:
             default:
-              return Container(
-                decoration: BoxDecoration(
-                    color: isUserMessage ? Colors.white : Colors.purple[200],
-                    borderRadius: BorderRadius.circular(25),
-                    border: Border.all(
-                        color: isUserMessage
-                            ? Colors.purple
-                            : Colors.purple.shade200)),
-                padding: const EdgeInsets.all(10),
-                child: Text(
-                  message.text?.text?[0] ?? '',
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
+              return Column(children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color:
+                          isUserMessage ? Colors.white : Colors.purple.shade200,
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(
+                          color: isUserMessage
+                              ? Colors.purple
+                              : Colors.purple.shade200)),
+                  padding: const EdgeInsets.all(10),
+                  child: Column(children: [
+                    Text(
+                      message.text?.text?[0] ?? '',
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 3.0,
+                    ),
+                    Text(
+                      formatter.format(DateTime.now()),
+                      style: TextStyle(fontSize: 9.0),
+                      textAlign: TextAlign.right,
+                    ),
+                  ]),
                 ),
-              );
+              ]);
           }
         },
       ),
