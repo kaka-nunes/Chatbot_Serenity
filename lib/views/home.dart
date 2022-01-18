@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Column(children: [
           Expanded(child: AppBody(messages: messages)),
           Container(
-            height: 45.0,
+            height: 55.0,
             padding: const EdgeInsets.all(7.0),
             decoration: BoxDecoration(
               color: Colors.purple,

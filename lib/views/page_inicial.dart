@@ -21,19 +21,18 @@ class _PageInicialState extends State<PageInicial> {
       body: Center(
           child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          //crossAxisAlignment: CrossAxisAlignment.stretch,
           //mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              alignment: Alignment(0, 0),
               width: 250.0,
               height: 250.0,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: Colors.white,
+                shape: BoxShape.circle,
                 image: DecorationImage(
                   image: AssetImage('assets/Serenity.png'),
-                 // fit: BoxFit.cover,
+                  // fit: BoxFit.cover,
                 ), //AssetImage("assets/Serenity.png"),
               ),
             ),
