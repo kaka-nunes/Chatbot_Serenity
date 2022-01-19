@@ -17,50 +17,52 @@ class _PageInicialState extends State<PageInicial> {
   }
 
   Widget _introScreen() {
-    return Scaffold(
-      body: Center(
+    return SplashScreenView(
+      navigateRoute: MyHomePage(),
+      duration: 15000,
+      //No celular não está rodando com a imagem
+      //imageSize: 200,
+      //imageSrc: "assets/Serenity.png",
+      text: "SERENITY",
+      textType: TextType.ColorizeAnimationText,
+      textStyle: TextStyle(
+        fontSize: 40.0,
+      ),
+      colors: [
+        Colors.purple,
+        Colors.blue,
+        Colors.blue.shade900,
+        Colors.pink,
+      ],
+      backgroundColor: Colors.white,
+    );
+    /*body: Center(
           child: SingleChildScrollView(
         child: Column(
-          //crossAxisAlignment: CrossAxisAlignment.stretch,
-          //mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
+              alignment: Alignment.center,
               width: 250.0,
               height: 250.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
+                  alignment: Alignment.center,
                   image: AssetImage('assets/Serenity.png'),
-                  // fit: BoxFit.cover,
                 ), //AssetImage("assets/Serenity.png"),
               ),
             ),
-            SplashScreenView(
-              navigateRoute: MyHomePage(),
-              duration: 3000,
-            )
+            Container(
+                alignment: Alignment.bottomCenter,
+                child: SplashScreenView(
+                  navigateRoute: MyHomePage(),
+                  duration: 3000,
+                )),
           ],
         ),
       )),
-    );
+    );*/
   }
 }
-
-      
-
-          /*child: SplashScreenView(
-            navigateRoute: MyHomePage(),
-            duration: 3000,
-            imageSize: 130,
-            imageSrc: "Serenity.png",
-            backgroundColor: Colors.white,
-            
-          ),*/
-
-      
-
-      /*SecondScreen(Type myHomePage) {
-    return MyHomePage();
-  }*/
-   

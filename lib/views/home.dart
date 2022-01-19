@@ -45,13 +45,31 @@ class _MyHomePageState extends State<MyHomePage> {
               fontWeight: FontWeight.bold,
             ),
           ),
+          /*Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  width: 35.0,
+                  height: 35.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      alignment: Alignment.center,
+                      image: AssetImage('assets/bot.jpg'),
+                    ), //AssetImage("assets/Serenity.png"),
+                  ),
+                ),
+                Text(
+                  widget.title ?? 'Serenity',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ]),*/
           backgroundColor: Colors.purple,
           actions: [
-            /*IconButton(
-              icon: Icon(Icons.contact_page_outlined),
-              onPressed: () {},
-              color: Colors.amber,
-            ),*/
             IconButton(
               icon: Icon(Icons.info_outlined),
               onPressed: () {
@@ -66,6 +84,29 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         backgroundColor: Colors.grey.shade100,
         body: Column(children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              /*Container(
+                alignment: Alignment.topLeft,
+                decoration: BoxDecoration(
+                    color: Colors.purple.shade200,
+                    borderRadius: BorderRadius.circular(25),
+                    border: Border.all(color: Colors.purple)),
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Oi',
+                        style: TextStyle(
+                          color: Colors.black,
+                        ))
+                  ],
+                ),
+              ),*/
+            ],
+          ),
           Expanded(child: AppBody(messages: messages)),
           Container(
             height: 55.0,
@@ -77,18 +118,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             child: Row(
               children: [
-                /*IconButton(
-                  color: Colors.white,
-                  icon: Icon(Icons.keyboard_voice_outlined, size: 25.0),
-                  onPressed: () {},
-                ),*/
                 Expanded(
-                  flex: 3,
-                  child: TextField(
-                    controller: _controller,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                    flex: 3,
+                    child: SingleChildScrollView(
+                      child: TextField(
+                        controller: _controller,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )),
                 IconButton(
                   color: Colors.white,
                   icon: Icon(
