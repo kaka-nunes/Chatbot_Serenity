@@ -36,24 +36,36 @@ class _InfoPageState extends State<InfoPage> {
               Card(
                   color: Colors.grey.shade100,
                   child: SizedBox(
-                    width: 330.0,
-                    height: 500.0,
+                    width: 350.0,
+                    height: 600.0,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         //mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
+                          Container(
+                            alignment: Alignment.center,
+                            width: 100.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              image: DecorationImage(
+                                alignment: Alignment.center,
+                                image: AssetImage('assets/cvv.png'),
+                              ), //AssetImage("assets/Serenity.png"),
+                            ),
+                          ),
+                          /*Text(
                             "Centro de Valorização da Vida (CVC)",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18.0),
                             textAlign: TextAlign.center,
-                          ),
+                          ),*/
                           SizedBox(
-                            height: 20.0,
+                            height: 15.0,
                           ),
                           Text(
                             'O CVV realiza apoio emocional e prevenção do suicídio,'
@@ -110,6 +122,19 @@ class _InfoPageState extends State<InfoPage> {
                           SizedBox(
                             height: 20.0,
                           ),
+                          Container(
+                            alignment: Alignment.center,
+                            width: 100.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              image: DecorationImage(
+                                alignment: Alignment.center,
+                                image: AssetImage('assets/pp.png'),
+                              ), //AssetImage("assets/Serenity.png"),
+                            ),
+                          ),
+                          /*
                           Text(
                             'Psicologos de Plantão',
                             style: TextStyle(
@@ -118,7 +143,7 @@ class _InfoPageState extends State<InfoPage> {
                               fontSize: 18.0,
                             ),
                             textAlign: TextAlign.center,
-                          ),
+                          ),*/
                           SizedBox(
                             height: 10.0,
                           ),
@@ -154,7 +179,19 @@ class _InfoPageState extends State<InfoPage> {
                         ],
                       ),
                     ),
-                  ))
+                  )),
+              Container(
+                alignment: Alignment.center,
+                width: 100.0,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  image: DecorationImage(
+                    alignment: Alignment.center,
+                    image: AssetImage('assets/msg.png'),
+                  ), //AssetImage("assets/Serenity.png"),
+                ),
+              ),
             ]))));
   }
 }

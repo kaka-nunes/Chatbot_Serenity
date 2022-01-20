@@ -17,52 +17,40 @@ class _PageInicialState extends State<PageInicial> {
   }
 
   Widget _introScreen() {
-    return SplashScreenView(
-      navigateRoute: MyHomePage(),
-      duration: 15000,
-      //No celular não está rodando com a imagem
-      //imageSize: 200,
-      //imageSrc: "assets/Serenity.png",
-      text: "SERENITY",
-      textType: TextType.ColorizeAnimationText,
-      textStyle: TextStyle(
-        fontSize: 40.0,
-      ),
-      colors: [
-        Colors.purple,
-        Colors.blue,
-        Colors.blue.shade900,
-        Colors.pink,
-      ],
-      backgroundColor: Colors.white,
-    );
-    /*body: Center(
+    return Scaffold(
+      body: Center(
           child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              alignment: Alignment.center,
-              width: 250.0,
-              height: 250.0,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  alignment: Alignment.center,
-                  image: AssetImage('assets/Serenity.png'),
-                ), //AssetImage("assets/Serenity.png"),
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                alignment: Alignment.center,
+                width: 250.0,
+                height: 250.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    alignment: Alignment.center,
+                    image: AssetImage('assets/Serenity.png'),
+                  ), //AssetImage("assets/Serenity.png"),
+                ),
               ),
-            ),
-            Container(
-                alignment: Alignment.bottomCenter,
-                child: SplashScreenView(
-                  navigateRoute: MyHomePage(),
-                  duration: 3000,
-                )),
-          ],
-        ),
+              FloatingActionButton.extended(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => MyHomePage(
+                            title: 'Serenity',
+                          )));
+                },
+                label: Text(
+                  "Iniciar Conversa",
+                  style: TextStyle(color: Colors.white),
+                ),
+                backgroundColor: Colors.purple,
+              ),
+            ]),
       )),
-    );*/
+    );
   }
 }
