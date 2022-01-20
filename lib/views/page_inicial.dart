@@ -36,6 +36,9 @@ class _PageInicialState extends State<PageInicial> {
                   ), //AssetImage("assets/Serenity.png"),
                 ),
               ),
+              SizedBox(
+                height: 35.0,
+              ),
               FloatingActionButton.extended(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
