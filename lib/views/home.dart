@@ -132,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         hintStyle: TextStyle(
                           color: Colors.white60,
                         ),
-                        hintText: "Digite dúvida...",
+                        hintText: "Digite sua dúvida...",
                       ),
                       cursorColor: Colors.white,
                     ),
