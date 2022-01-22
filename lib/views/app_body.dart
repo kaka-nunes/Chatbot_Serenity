@@ -22,7 +22,16 @@ class AppBody extends StatelessWidget {
           mainAxisAlignment:
               isUserMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (!isUserMessage)
+              Image.asset(
+                "assets/bot.png",
+                width: 40,
+              ),
+            SizedBox(
+              width: 5,
+            ),
             _MessageContainer(
               message: message,
               isUserMessage: isUserMessage,
@@ -58,7 +67,7 @@ class _MessageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxWidth: 250),
+      constraints: const BoxConstraints(maxWidth: 250),
       child: LayoutBuilder(
         builder: (context, constrains) {
           switch (message.type) {
@@ -66,35 +75,40 @@ class _MessageContainer extends StatelessWidget {
               return _CardContainer(card: message.card!);
             case MessageType.text:
             default:
-              return Column(children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color:
-                          isUserMessage ? Colors.white : Colors.purple.shade200,
-                      borderRadius: BorderRadius.circular(25),
-                      border: Border.all(
-                          color: isUserMessage
-                              ? Colors.purple
-                              : Colors.purple.shade200)),
-                  padding: const EdgeInsets.all(10),
-                  child: Column(children: [
-                    Text(
-                      message.text?.text?[0] ?? '',
-                      style: TextStyle(
-                        color: Colors.black,
+              return Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: isUserMessage
+                            ? Colors.white
+                            : Colors.purple.shade200,
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(
+                            color: isUserMessage
+                                ? Colors.purple
+                                : Colors.purple.shade200)),
+                    padding: const EdgeInsets.all(10),
+                    child: Column(children: [
+                      Text(
+                        message.text?.text?[0] ?? '',
+                        style: TextStyle(
+                          color: isUserMessage ? Colors.black : Colors.white,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 3.0,
-                    ),
-                    Text(
-                      formatter.format(DateTime.now()),
-                      style: TextStyle(fontSize: 9.0),
-                      textAlign: TextAlign.right,
-                    ),
-                  ]),
-                ),
-              ]);
+                      const SizedBox(
+                        height: 3.0,
+                      ),
+                      Text(
+                        formatter.format(DateTime.now()),
+                        style: const TextStyle(
+                          fontSize: 9,
+                        ),
+                        textAlign: TextAlign.right,
+                      ),
+                    ]),
+                  ),
+                ],
+              );
           }
         },
       ),
@@ -112,7 +126,7 @@ class _CardContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return  Container(
       child: Card(
         color: Colors.white,
         child: Column(

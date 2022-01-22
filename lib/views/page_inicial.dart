@@ -19,8 +19,8 @@ class _PageInicialState extends State<PageInicial> {
   Widget _introScreen() {
     return Scaffold(
       body: Center(
-          child: SingleChildScrollView(
-        child: Column(
+        child: SingleChildScrollView(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -33,7 +33,7 @@ class _PageInicialState extends State<PageInicial> {
                   image: DecorationImage(
                     alignment: Alignment.center,
                     image: AssetImage('assets/Serenity.png'),
-                  ), //AssetImage("assets/Serenity.png"),
+                  ), 
                 ),
               ),
               SizedBox(
@@ -41,10 +41,13 @@ class _PageInicialState extends State<PageInicial> {
               ),
               FloatingActionButton.extended(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
                       builder: (context) => MyHomePage(
-                            title: 'Serenity',
-                          )));
+                        title: 'Serenity',
+                      ),
+                    ),
+                  );
                 },
                 label: Text(
                   "Iniciar Conversa",
@@ -52,8 +55,10 @@ class _PageInicialState extends State<PageInicial> {
                 ),
                 backgroundColor: Colors.purple,
               ),
-            ]),
-      )),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

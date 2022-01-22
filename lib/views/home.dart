@@ -23,6 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     _init();
+
     super.initState();
   }
 
@@ -31,85 +32,85 @@ class _MyHomePageState extends State<MyHomePage> {
       path: "assets/credentials.json",
       projectId: "chatbot-serenity",
     ).then(
-      (instance) => dialogFlowtter = instance,
+      (instance) {
+        dialogFlowtter = instance;
+        _iniciarConversa();
+      },
+    );
+  }
+
+  void _iniciarConversa() async {
+    DetectIntentResponse response = await dialogFlowtter.detectIntent(
+      queryInput: QueryInput(text: TextInput(text: "Ola")),
+    );
+    if (response.message == null) return;
+    setState(
+      () {
+        addMessage(response.message!);
+      },
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            widget.title ?? 'Serenity',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+      appBar: AppBar(
+        title: Text(
+          widget.title ?? 'Serenity',
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
           ),
-          /*Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  width: 35.0,
-                  height: 35.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      alignment: Alignment.center,
-                      image: AssetImage('assets/bot.jpg'),
-                    ), //AssetImage("assets/Serenity.png"),
-                  ),
-                ),
-                Text(
-                  widget.title ?? 'Serenity',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ]),*/
-          backgroundColor: Colors.purple,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.info_outlined),
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => InfoPage(
-                          title: 'Ajuda',
-                        )));
-              },
-              color: Colors.white,
-            ),
-          ],
         ),
-        backgroundColor: Colors.grey.shade100,
-        body: Column(children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              /*Container(
-                alignment: Alignment.topLeft,
-                decoration: BoxDecoration(
-                    color: Colors.purple.shade200,
-                    borderRadius: BorderRadius.circular(25),
-                    border: Border.all(color: Colors.purple)),
-                padding: const EdgeInsets.all(10),
+        backgroundColor: Colors.purple,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info_outlined),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const InfoPage(
+                    title: 'Ajuda',
+                  ),
+                ),
+              );
+            },
+            color: Colors.white,
+          ),
+        ],
+      ),
+      backgroundColor: Colors.grey.shade100,
+      body: Column(
+        children: [
+          Expanded(
+            child: Visibility(
+              visible: messages.isNotEmpty,
+              child: AppBody(messages: messages),
+              replacement: Align(
+                alignment: Alignment.bottomLeft,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Oi',
-                        style: TextStyle(
-                          color: Colors.black,
-                        ))
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Image.asset(
+                      "assets/bot.png",
+                      width: 40,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    const Text("Digitando...")
                   ],
                 ),
-              ),*/
-            ],
+              ),
+            ),
           ),
-          Expanded(child: AppBody(messages: messages)),
           Container(
             height: 55.0,
+            margin: const EdgeInsets.symmetric(
+              horizontal: 10,
+              vertical: 10,
+            ),
             padding: const EdgeInsets.all(7.0),
             decoration: BoxDecoration(
               color: Colors.purple,
@@ -119,16 +120,27 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               children: [
                 Expanded(
-                    flex: 3,
-                    child: SingleChildScrollView(
-                      child: TextField(
-                        controller: _controller,
-                        style: TextStyle(color: Colors.white),
+                  flex: 3,
+                  child: SingleChildScrollView(
+                    child: TextField(
+                      keyboardType: TextInputType.text,
+                      controller: _controller,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
+                        isDense: true,
+                        border: InputBorder.none,
+                        hintStyle: TextStyle(
+                          color: Colors.white60,
+                        ),
+                        hintText: "Digite dúvida...",
                       ),
-                    )),
+                      cursorColor: Colors.white,
+                    ),
+                  ),
+                ),
                 IconButton(
                   color: Colors.white,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.send,
                     size: 25.0,
                   ),
@@ -139,9 +151,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-          )
-        ] //),
-            ));
+          ),
+        ],
+      ),
+    );
   }
 
   void sendMessage(String text) async {

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:chatbot/views/home.dart';
-import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -15,176 +13,142 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Ajuda ?',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              )),
-          backgroundColor: Colors.purple,
+      appBar: AppBar(
+        title: const Text(
+          'Ajuda ?',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        body: SingleChildScrollView(
-            child: Center(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-              SizedBox(
+        backgroundColor: Colors.purple,
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
                 height: 30.0,
               ),
               Card(
-                  color: Colors.grey.shade100,
-                  child: SizedBox(
-                    width: 350.0,
-                    height: 600.0,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        //mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            width: 100.0,
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              image: DecorationImage(
-                                alignment: Alignment.center,
-                                image: AssetImage('assets/cvv.png'),
-                              ), //AssetImage("assets/Serenity.png"),
+                color: Colors.grey.shade100,
+                child: SizedBox(
+                  width: 350.0,
+                  height: 600.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      //mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          width: 100.0,
+                          height: 100.0,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            image: DecorationImage(
+                              alignment: Alignment.center,
+                              image: AssetImage('assets/cvv.png'),
                             ),
                           ),
-                          /*Text(
-                            "Centro de Valorização da Vida (CVC)",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0),
-                            textAlign: TextAlign.center,
-                          ),*/
-                          SizedBox(
-                            height: 15.0,
+                        ),
+                        const SizedBox(
+                          height: 15.0,
+                        ),
+                        const Text(
+                          'O CVV realiza apoio emocional e prevenção do suicídio,'
+                          ' através de atendimento voluntário e gratuito para pessoas que querem e precisam conversar. '
+                          ' Atendimento sob total sigilo por telefone, email e chat 24 horas todos os dias.  ',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontStyle: FontStyle.italic,
                           ),
-                          Text(
-                            'O CVV realiza apoio emocional e prevenção do suicídio,'
-                            ' através de atendimento voluntário e gratuito para pessoas que querem e precisam conversar. '
-                            ' Atendimento sob total sigilo por telefone, email e chat 24 horas todos os dias.  ',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontStyle: FontStyle.italic,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              FloatingActionButton.extended(
-                                onPressed: () async {
-                                  const url = 'https://www.cvv.org.br/';
-                                  if (await canLaunch(url)) {
-                                    await launch(url);
-                                  } else {
-                                    throw 'Could not launch $url';
-                                  }
-                                },
-                                label: Text(
-                                  "CVV",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                backgroundColor: Colors.purple,
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            FloatingActionButton.extended(
+                              onPressed: () async {
+                                const url = 'https://www.cvv.org.br/';
+                                if (await canLaunch(url)) {
+                                  await launch(url);
+                                } else {
+                                  throw 'Could not launch $url';
+                                }
+                              },
+                              label: const Text(
+                                "CVV",
+                                style: TextStyle(color: Colors.white),
                               ),
-
-                              /* IconButton(
-                            // Use the FaIcon Widget + FontAwesomeIcons class for the IconData
-                            icon: FaIcon(
-                              FontAwesomeIcons.instagram,
-                              size: 50.0,
-                              color: Colors.purple,
+                              backgroundColor: Colors.purple,
                             ),
-                            onPressed: () async {
-                              const url =
-                                  'https://www.instagram.com/cvvoficial/?hl=pt-br';
-                              if (await canLaunch(url)) {
-                                await launch(url);
-                              } else {
-                                throw 'Could not launch $url';
-                              }
-                            },
-                          )*/
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: 100.0,
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              image: DecorationImage(
-                                alignment: Alignment.center,
-                                image: AssetImage('assets/pp.png'),
-                              ), //AssetImage("assets/Serenity.png"),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          width: 100.0,
+                          height: 100.0,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            image: DecorationImage(
+                              alignment: Alignment.center,
+                              image: AssetImage('assets/pp.png'),
                             ),
                           ),
-                          /*
-                          Text(
-                            'Psicologos de Plantão',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),*/
-                          SizedBox(
-                            height: 10.0,
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        const Text(
+                          'Plantão Psicológico Voluntário e Psicoterapia Social. Atendimento Online.',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontStyle: FontStyle.italic,
                           ),
-                          Text(
-                            'Plantão Psicológico Voluntário e Psicoterapia Social. Atendimento Online.',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontStyle: FontStyle.italic,
-                            ),
-                            textAlign: TextAlign.center,
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        IconButton(
+                          icon: const FaIcon(
+                            FontAwesomeIcons.instagram,
+                            size: 50.0,
+                            color: Colors.purple,
                           ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          IconButton(
-                            // Use the FaIcon Widget + FontAwesomeIcons class for the IconData
-                            icon: FaIcon(
-                              FontAwesomeIcons.instagram,
-                              size: 50.0,
-                              color: Colors.purple,
-                            ),
-                            onPressed: () async {
-                              const url =
-                                  'https://www.instagram.com/psicologosdeplantao_/?hl=pt-br';
-                              if (await canLaunch(url)) {
-                                await launch(url);
-                              } else {
-                                throw 'Could not launch $url';
-                              }
-                            },
-                          )
-                          /**/
-                        ],
-                      ),
+                          onPressed: () async {
+                            const url =
+                                'https://www.instagram.com/psicologosdeplantao_/?hl=pt-br';
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          },
+                        )
+                        /**/
+                      ],
                     ),
-                  )),
+                  ),
+                ),
+              ),
               Container(
                 alignment: Alignment.center,
                 width: 100.0,
                 height: 100.0,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.rectangle,
                   image: DecorationImage(
                     alignment: Alignment.center,
@@ -192,6 +156,10 @@ class _InfoPageState extends State<InfoPage> {
                   ), //AssetImage("assets/Serenity.png"),
                 ),
               ),
-            ]))));
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
