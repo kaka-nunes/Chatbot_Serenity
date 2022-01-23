@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 //import 'package:splashscreen/splashscreen.dart';
 
-void main(/*List<String> args*/) {
+void main() {
   runApp(MyApp());
 }
 
@@ -14,8 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PageInicial(),
-      debugShowCheckedModeBanner: false,
-    );
+        home: const PageInicial(),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            secondary: Colors.purple,
+          ),
+        ));
   }
 }

@@ -16,7 +16,7 @@ class _InfoPageState extends State<InfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Ajuda ?',
+          title: const Text('Ajuda ?',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20.0,
@@ -30,14 +30,14 @@ class _InfoPageState extends State<InfoPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-              SizedBox(
+              const SizedBox(
                 height: 30.0,
               ),
               Card(
                   color: Colors.grey.shade100,
                   child: SizedBox(
-                    width: 350.0,
-                    height: 600.0,
+                    width: 300.0,
+                    height: 610.0,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -46,10 +46,11 @@ class _InfoPageState extends State<InfoPage> {
                         children: [
                           Container(
                             alignment: Alignment.center,
-                            width: 100.0,
+                            width: 230.0,
                             height: 100.0,
                             decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(35.0),
+                              //border: Border.all(color: Colors.greyshade100)
                               image: DecorationImage(
                                 alignment: Alignment.center,
                                 image: AssetImage('assets/cvv.png'),
@@ -70,7 +71,7 @@ class _InfoPageState extends State<InfoPage> {
                           Text(
                             'O CVV realiza apoio emocional e prevenção do suicídio,'
                             ' através de atendimento voluntário e gratuito para pessoas que querem e precisam conversar. '
-                            ' Atendimento sob total sigilo por telefone, email e chat 24 horas todos os dias.  ',
+                            ' Atendimento sob total sigilo por telefone (188), email e chat 24 horas todos os dias.  ',
                             style: TextStyle(
                               color: Colors.black,
                               fontStyle: FontStyle.italic,
@@ -99,24 +100,6 @@ class _InfoPageState extends State<InfoPage> {
                                 ),
                                 backgroundColor: Colors.purple,
                               ),
-
-                              /* IconButton(
-                            // Use the FaIcon Widget + FontAwesomeIcons class for the IconData
-                            icon: FaIcon(
-                              FontAwesomeIcons.instagram,
-                              size: 50.0,
-                              color: Colors.purple,
-                            ),
-                            onPressed: () async {
-                              const url =
-                                  'https://www.instagram.com/cvvoficial/?hl=pt-br';
-                              if (await canLaunch(url)) {
-                                await launch(url);
-                              } else {
-                                throw 'Could not launch $url';
-                              }
-                            },
-                          )*/
                             ],
                           ),
                           SizedBox(
@@ -124,10 +107,12 @@ class _InfoPageState extends State<InfoPage> {
                           ),
                           Container(
                             alignment: Alignment.center,
-                            width: 100.0,
+                            width: 250.0,
                             height: 100.0,
                             decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(35.0),
+                              // border: Border.all(color: Colors.purple),
+
                               image: DecorationImage(
                                 alignment: Alignment.center,
                                 image: AssetImage('assets/pp.png'),
@@ -180,10 +165,10 @@ class _InfoPageState extends State<InfoPage> {
                       ),
                     ),
                   )),
-              Container(
+              /* Container(
                 alignment: Alignment.center,
-                width: 100.0,
-                height: 100.0,
+                width: 300.0,
+                height: 150.0,
                 decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
                   image: DecorationImage(
@@ -191,7 +176,7 @@ class _InfoPageState extends State<InfoPage> {
                     image: AssetImage('assets/msg.png'),
                   ), //AssetImage("assets/Serenity.png"),
                 ),
-              ),
+              ),*/
             ]))));
   }
 }

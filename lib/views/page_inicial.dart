@@ -13,10 +13,6 @@ class PageInicial extends StatefulWidget {
 class _PageInicialState extends State<PageInicial> {
   @override
   Widget build(BuildContext context) {
-    return _introScreen();
-  }
-
-  Widget _introScreen() {
     return Scaffold(
       body: Center(
           child: SingleChildScrollView(
@@ -26,8 +22,8 @@ class _PageInicialState extends State<PageInicial> {
             children: [
               Container(
                 alignment: Alignment.center,
-                width: 250.0,
-                height: 250.0,
+                width: 200.0,
+                height: 200.0,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
@@ -41,14 +37,17 @@ class _PageInicialState extends State<PageInicial> {
               ),
               FloatingActionButton.extended(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => MyHomePage(
                             title: 'Serenity',
                           )));
                 },
                 label: Text(
-                  "Iniciar Conversa",
-                  style: TextStyle(color: Colors.white),
+                  "Iniciar conversa",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 backgroundColor: Colors.purple,
               ),

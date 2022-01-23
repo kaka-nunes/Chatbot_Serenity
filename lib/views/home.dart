@@ -31,7 +31,22 @@ class _MyHomePageState extends State<MyHomePage> {
       path: "assets/credentials.json",
       projectId: "chatbot-serenity",
     ).then(
-      (instance) => dialogFlowtter = instance,
+      (instance) {
+        dialogFlowtter = instance;
+        _iniciarConversa();
+      },
+    );
+  }
+
+  void _iniciarConversa() async {
+    DetectIntentResponse response = await dialogFlowtter.detectIntent(
+      queryInput: QueryInput(text: TextInput(text: "Ola")),
+    );
+    if (response.message == null) return;
+    setState(
+      () {
+        addMessage(response.message!);
+      },
     );
   }
 
@@ -41,33 +56,10 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(
             widget.title ?? 'Serenity',
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
-          /*Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  width: 35.0,
-                  height: 35.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      alignment: Alignment.center,
-                      image: AssetImage('assets/bot.jpg'),
-                    ), //AssetImage("assets/Serenity.png"),
-                  ),
-                ),
-                Text(
-                  widget.title ?? 'Serenity',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ]),*/
           backgroundColor: Colors.purple,
           actions: [
             IconButton(
@@ -84,64 +76,80 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         backgroundColor: Colors.grey.shade100,
         body: Column(children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              /*Container(
-                alignment: Alignment.topLeft,
-                decoration: BoxDecoration(
-                    color: Colors.purple.shade200,
-                    borderRadius: BorderRadius.circular(25),
-                    border: Border.all(color: Colors.purple)),
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Oi',
-                        style: TextStyle(
-                          color: Colors.black,
-                        ))
-                  ],
-                ),
-              ),*/
-            ],
+          Expanded(
+            child: Visibility(
+              visible: messages.isNotEmpty,
+              child: AppBody(messages: messages),
+              replacement: Align(
+                alignment: Alignment.bottomLeft,
+                child: Row(children: [
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                      height: 45.0,
+                      width: 45.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: AssetImage('assets/bot.jpg'),
+                        ),
+                      )),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  const Text("Digitando...")
+                ]),
+              ),
+            ),
           ),
-          Expanded(child: AppBody(messages: messages)),
           Container(
             height: 55.0,
+            margin: const EdgeInsets.symmetric(
+              horizontal: 10,
+              vertical: 10,
+            ),
             padding: const EdgeInsets.all(7.0),
             decoration: BoxDecoration(
               color: Colors.purple,
-              borderRadius: BorderRadius.circular(25),
-              border: Border.all(color: Colors.purple),
+              borderRadius: BorderRadius.circular(25.0),
+              //border: Border.all(color: Colors.purple),
             ),
-            child: Row(
-              children: [
-                Expanded(
-                    flex: 3,
-                    child: SingleChildScrollView(
-                      child: TextField(
-                        controller: _controller,
-                        style: TextStyle(color: Colors.white),
+            child: Row(children: [
+              Expanded(
+                flex: 3,
+                child: SingleChildScrollView(
+                  child: TextField(
+                    keyboardType: TextInputType.text,
+                    controller: _controller,
+                    style: const TextStyle(color: Colors.white),
+                    decoration: const InputDecoration(
+                      isDense: true,
+                      border: InputBorder.none,
+                      hintStyle: TextStyle(
+                        color: Colors.white60,
                       ),
-                    )),
-                IconButton(
-                  color: Colors.white,
-                  icon: Icon(
-                    Icons.send,
-                    size: 25.0,
+                      hintText: "Digite sua dúvida...",
+                    ),
+                    cursorColor: Colors.white,
                   ),
-                  onPressed: () {
-                    sendMessage(_controller.text);
-                    _controller.clear();
-                  },
                 ),
-              ],
-            ),
+              ),
+              IconButton(
+                color: Colors.white,
+                icon: const Icon(
+                  Icons.send,
+                  size: 25.0,
+                ),
+                onPressed: () {
+                  sendMessage(_controller.text);
+                  _controller.clear();
+                },
+              ),
+            ]),
           )
-        ] //),
-            ));
+          //),
+        ]));
   }
 
   void sendMessage(String text) async {
