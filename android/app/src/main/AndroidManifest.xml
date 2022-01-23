@@ -39,7 +39,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
-         <!--<queries>
+        <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="https" />
@@ -52,7 +52,7 @@
             <action android:name="android.intent.action.SEND" />
             <data android:mimeType="*/*" />
         </intent>
-    </queries>*/-->
+    </queries>
 
         
     </application>
