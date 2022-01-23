@@ -49,7 +49,7 @@ dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/Serenity.png"
+  image_path: "assets/logo.png"
  
   
 
@@ -79,8 +79,7 @@ flutter:
     - assets/credentials.json
     - assets/Serenity.png
     - assets/cvv.png
-    - assets/info.png
-    - assets/msg.png
+    - assets/logo.png
     - assets/pp.png
     - assets/bot.jpg
    

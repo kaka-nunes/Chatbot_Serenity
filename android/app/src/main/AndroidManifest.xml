@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.chat_boot">
+    
    <application
-        android:label="chat_boot"
+        android:label="Chatbot Serenity"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
@@ -37,5 +38,22 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+         <!--<queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="tel" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="*/*" />
+        </intent>
+    </queries>*/-->
+
+        
     </application>
 </manifest>
